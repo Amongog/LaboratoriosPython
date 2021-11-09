@@ -1,12 +1,14 @@
 #!/usr/bin/python3
-# ---------------------------------------------------------------------
-#             IE-0117 Programación Bajo Plataformas Abiertas
-#         Autor: Samuel Berrocal Soto. samuel.berrocal@ucr.ac.cr
-# ---------------------------------------------------------------------
-# Este script ...
-# ---------------------------------------------------------------------
-
-
+# -----------------------------------------------------------------------------
+#               IE-0117 Programación Bajo Plataformas Abiertas
+#           Autor: Samuel Berrocal Soto. samuel.berrocal@ucr.ac.cr
+# -----------------------------------------------------------------------------
+# Este script ejecuta una función recursiva para la Secuencia de Fibonacci,
+# y recibe el índice y opciones mediante argparser.
+#   n       --> valor para calcular el n-ésimo número de la secuencia.
+#   -c      --> opció para mostrar la secuencia completa.
+#   -t      --> opción para mostrar el tiempo de ejecución del script.
+# -----------------------------------------------------------------------------
 import argparse
 import time
 
@@ -39,7 +41,7 @@ parser = argparse.ArgumentParser(
 
 parser.add_argument(
     'n',
-    type=check_positive,  # N debe ser entero y positivo.
+    type=check_positive,        # N debe ser entero y positivo.
     help='N-ésimo valor deseado de la secuencia.'
 )
 parser.add_argument(
@@ -65,6 +67,7 @@ if(args.n == 0):
         print(
             'La secuencia de Fibonacci hasta el índice {} es:'.format(args.n)
         )
+        # Imprime el resultado de cada recursión.
         for i in range(args.n+1):
             print(fibonacci(i))
         print(
@@ -81,6 +84,7 @@ if(args.n == 0):
             print(fibonacci(i))
     elif(args.tiempo):
         print('El número de Fibonacci para el ídice {} es:'.format(args.n))
+        # Imprime el resultado sólo para el índice deseado.
         print(fibonacci(args.n))
         print(
             'Tiempo total de ejecución:',
