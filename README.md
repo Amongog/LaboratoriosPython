@@ -1,2 +1,5 @@
 # LaboratoriosPython
-Repositorio para Laboratorios de IE0117
+Repositorio para laboratorios del curso:
+Programación Bajo Plataformas Abiertas IE0117
+Escuela de Ingeniería Eléctrica
+Universidad de Costa Rica
