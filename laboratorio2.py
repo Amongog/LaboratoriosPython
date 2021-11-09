@@ -11,20 +11,7 @@
 contact_list = []
 while True:
     string = input('\nIngrese Nombre(s) y Apellidos o digite (SALIR) para salir: ')
-    # Si el string sólo contiene letras, continua, sino, reintentar.
-    try:
-        if(string.isalpha()):
-            break
-        else:
-            raise ValueError()
-    except ValueError:
-        print('\n(!) No utilice números o carácteres especiales, por favor.')
-        continue
-
-    # Si se ingresa SALIR, o una variación de este, se imprime
-    # el registro completo de los contactos y finaliza el script.
-    # De otra forma, verifica que el tamaño del strin sea correcto y
-    # registra un nuevo contacto.
+    # Verifica si el usuario desea salir e imprimir la lista.
     if(string == 'Salir' or string == 'SALIR' or string == 'salir'):
         print('\n------------------------------')
         print('Lista de Contactos registrada:')
@@ -33,12 +20,24 @@ while True:
             print('• '+contact_list[i])
         print('\n\n************ FIN *************')
         break
-    else:
-        # Primero divide el string ingresado y capitaliza cada entrada
-        # de la lista, para luego unificar la lista en una string.
-        cap_string = ' '.join(i.capitalize() for i in string.split(' '))
-        if(len(string.split(' ')) == 3 or len(string.split(' ')) == 4):
-            contact_list.append(cap_string)
-            print('\n»»»» Registro exitoso ««««')
+    try:
+        # Prueba si se tiene una palabra, o palabras y espacios.
+        if(any(x.isalpha() for x in string)
+            and all(x.isalpha() or x.isspace() for x in string) == True):
+            print('.')
         else:
-            print('\n(!) Utilice un formato correcto (3 o 4 componentes).')
+            # Si detecta un símbolo o número, alerta un error.
+            raise ValueError
+    except ValueError:
+        print('\n(!) No utilice números o carácteres especiales, por favor.')
+        continue # Se salta el resto de la iteración.
+
+    # Capitaliza cada entrada en la lista que se crea al hacer split.
+    # Al finalizar esto, lo une de nuevo en un string.
+    cap_string = ' '.join(i.capitalize() for i in string.split(' '))
+    # Verifica que el tamaño del string sean 3 o 4 palabras.
+    if(len(string.split(' ')) == 3 or len(string.split(' ')) == 4):
+        contact_list.append(cap_string)
+        print('\n»»»» Registro exitoso ««««')
+    else:
+        print('\n(!) Utilice un formato correcto (3 o 4 componentes).')
